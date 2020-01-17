@@ -1,0 +1,17 @@
+from django.db import models
+from django.conf import settings
+from django.urls import reverse
+
+
+class Entry(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    date = models.DateField(db_index=True)
+    distance = models.DecimalField(max_digits=10, decimal_places=2)
+    duration = models.DurationField()
+    average_speed = models.DecimalField(blank=True, max_digits=10, decimal_places=2)
+
+    def __str__(self):
+        return 'Report page for user {}'.format(self.user.username)
+
+    def get_absolute_url(self):
+        return reverse('report:post_detail', args=[])
