@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+
+{% block title %}Report{% endblock %}
+{% block content %}
+<h1>Report</h1>
+
+
+<h2>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Distance</th>
+            <th>Duration</th>
+            <th>Date</th>
+        <tr>
+        </thead>
+        <tbody>
+        {% for entry in entries %}
+        <tr>
+            <td>{{ entry.distance }}</td>
+            <td>{{ entry.duration }}</td>
+            <td>{{ entry.date }}</td>
+            <td><a href="{% url 'report:detail' entry.id %}">Detail...</a></td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</h2>
+
+<form action="{% url 'report:entry_create' %}">
+    <p><input type="submit" value="Add entry" /></p>
+</form>
+
+{% include "pagination.html" with page=entries %}
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Entry{% endblock %}
+{% block content %}
+<h1>Entry</h1>
+
+
+<h2>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Distance</th>
+            <th>Duration</th>
+            <th>Date</th>
+        <tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>{{ entry.distance }}</td>
+            <td>{{ entry.duration }}</td>
+            <td>{{ entry.date }}</td>
+        </tr>
+        </tbody>
+    </table>
+</h2>
+
+<form action="{% url 'report:remove' entry.id %}">
+    <p><input type="submit" value="Delete entry" /></p>
+</form>
+
+{% endblock %}

@@ -1,5 +1,5 @@
-from django.db import models
 from django.conf import settings
+from django.db import models
 from django.urls import reverse
 
 
@@ -13,4 +13,4 @@ class Entry(models.Model):
         return 'Entry for user {}'.format(self.user.username)
 
     def get_absolute_url(self):
-        return reverse('report:post_detail', args=[])
+        return reverse('report:entry_create', args=[])
